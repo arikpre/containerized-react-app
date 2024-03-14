@@ -1,0 +1,23 @@
+FROM node:21-alpine
+
+# setting the working directory
+WORKDIR usr/app
+
+# installing the dependencies
+# for this we need to copy the package.json file
+COPY ./package.json ./
+RUN npm i
+
+# then copying the rest
+# the reson we are separating 
+# the part related to node_modules
+# is to skip that phase if only our code changed
+
+# also in dev environment we don't really need to copy
+# since we're setting up volumes
+# but since we would probably copy and paste this dockerfile
+# as a base for the production one, it'es better to keep it
+COPY ./ ./
+
+# and starting the development server
+CMD ["npm", "run", "start"]
