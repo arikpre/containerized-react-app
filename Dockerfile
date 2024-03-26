@@ -3,6 +3,7 @@ FROM node:21-alpine as builder
 
 WORKDIR usr/app
 COPY ./package.json ./
+RUN npm --version
 RUN npm i
 COPY ./ ./ 
 
