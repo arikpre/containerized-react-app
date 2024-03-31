@@ -27,3 +27,4 @@ jobs:
           region: ap-southeast-1
           version_label: Sample #${{ github.sha }}
           deployment_package: deploy.zip
+          use_existing_version_if_available: true
