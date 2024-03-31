@@ -1,14 +1,29 @@
-# This is a basic workflow to help you get started with Actions
-
-name: First workflow
-on: workflow_dispatch # manually
+name: Deploy Frontend
+on:
+  push:
+    branches:
+      - main # check your repo, your default branch might be master!
+ 
 jobs:
-  first-job:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Print greeting
-        run: |
-          echo "Hello <> world!"
-          echo "you alright?"
-      - name: Print goodbye
-        run: echo "bye!"
+      - uses: actions/checkout@v3
+      - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - run: docker build -t cygnetops/react-test -f Dockerfile.dev .
+      - run: docker run -e CI=true cygnetops/react-test npm test
+ 
+      - name: Generate deployment package
+        run: zip -r deploy.zip . -x '*.git*'
+ 
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+          application_name: containerized-react-app
+          environment_name: Containerized-react-app-env 
+          existing_bucket_name: elasticbeanstalk-ap-southeast-1-430174875941
+          region: ap-southeast-1
+          version_label: ${{ github.sha }}
+          deployment_package: deploy.zip

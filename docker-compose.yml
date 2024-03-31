@@ -1,21 +1,8 @@
-version: '3.7'
-
+version: '3'
 services:
-  dev:
+  web:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     ports:
-      - 3000:3000
-    volumes:
-      - /usr/app/node_modules
-      - .:/usr/app
-  test:
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
-    volumes:
-      - /usr/app/node_modules
-      - .:/usr/app
-    # overriding the command from Dockerfile.dev
-    command: ["npm", "run", "test"]
+      - '80:80'
