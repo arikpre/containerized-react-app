@@ -25,5 +25,5 @@ jobs:
           environment_name: Containerized-react-app-env 
           existing_bucket_name: elasticbeanstalk-ap-southeast-1-430174875941
           region: ap-southeast-1
-          version_label: ${{ github.sha }}
+          version_label: Sample #${{ github.sha }}
           deployment_package: deploy.zip
