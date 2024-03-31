@@ -13,4 +13,5 @@ RUN npm run build
 FROM nginx
 # copy over the result of the build phase
 # we use --from=builder as defined in the FROM of the build phase
+EXPOSE 80
 COPY --from=builder ./usr/app/build ./usr/share/nginx/html
