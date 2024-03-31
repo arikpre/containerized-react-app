@@ -9,6 +9,7 @@ COPY ./ ./
 
 RUN npm run build
 
+
 # run phase
 FROM nginx
 # copy over the result of the build phase
