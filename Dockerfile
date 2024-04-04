@@ -4,7 +4,7 @@ FROM node:21-alpine as builder
 WORKDIR usr/app
 COPY ./package.json ./
 RUN npm --version
-RUN NODE_OPTIONS="--max-old-space-size=4096" npm i
+RUN NODE_OPTIONS="--max-old-space-size=8192" npm i
 # RUN npm ci
 COPY ./ ./ 
 
