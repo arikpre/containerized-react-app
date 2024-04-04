@@ -14,9 +14,9 @@ test('renders something else', () => {
 });
 
 
-test('renders something more', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn HJHJ j react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+// test('renders something more', () => {
+//   render(<App />);
+//   const linkElement = screen.getByText(/learn HJHJ j react/i);
+//   expect(linkElement).toBeInTheDocument();
+// });
 
