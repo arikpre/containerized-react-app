@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Salut Yvo, comment ça va?
+          Salut Yvo ;-)
         </a>
       </header>
     </div>
